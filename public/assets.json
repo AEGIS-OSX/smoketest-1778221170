@@ -1,31 +1,31 @@
 {
   "hero": {
-    "url": "",
-    "alt": "",
+    "url": "https://zkvkbpxrxnfynqqeytke.supabase.co/storage/v1/object/public/marketing-assets/smoketest-1778221170/cleo/1778221827375-hero.png",
+    "alt": "Lead hero visual with left-side charcoal negative space and a leash-hand city park moment at dusk. It fits the museum-at-midnight direction through deep charcoal fields, warm brass practical light, ta",
     "width": 1920,
     "height": 1080
   },
   "feature_1": {
-    "url": "",
-    "alt": "",
+    "url": "https://zkvkbpxrxnfynqqeytke.supabase.co/storage/v1/object/public/marketing-assets/smoketest-1778221170/cleo/1778221778815-feature_1.png",
+    "alt": "Feature support image showing a quiet pre-dawn entryway with leash, keys, and brass details arranged on a bone-toned surface. It supports flexible scheduling with a calm ready-to-go cue, warm tungsten",
     "width": 800,
     "height": 600
   },
   "feature_2": {
-    "url": "",
-    "alt": "",
+    "url": "https://zkvkbpxrxnfynqqeytke.supabase.co/storage/v1/object/public/marketing-assets/smoketest-1778221170/cleo/1778221803175-feature_2.png",
+    "alt": "Feature support image showing a close leash handoff on an urban sidewalk near a park gate. It supports vetted-walker trust through a precise, human moment, brass clasp highlight, muted amber surroundi",
     "width": 800,
     "height": 600
   },
   "feature_3": {
-    "url": "",
-    "alt": "",
+    "url": "https://zkvkbpxrxnfynqqeytke.supabase.co/storage/v1/object/public/marketing-assets/smoketest-1778221170/cleo/1778221790385-feature_3.png",
+    "alt": "Feature support image showing a dog walker on a park bench at dusk with phone angled away, leash visible, and warm path lights behind. It implies real-time updates and peace of mind without fake UI, w",
     "width": 800,
     "height": 600
   },
   "social_proof": {
-    "url": "",
-    "alt": "",
+    "url": "https://zkvkbpxrxnfynqqeytke.supabase.co/storage/v1/object/public/marketing-assets/smoketest-1778221170/cleo/1778221805679-social_proof.png",
+    "alt": "Social-proof accent image showing an intimate stoop crop with a dog owner, dog, leash hand, and brass door hardware at blue hour. It fits the testimonial strip by feeling editorial and local without r",
     "width": 1200,
     "height": 800
   }
