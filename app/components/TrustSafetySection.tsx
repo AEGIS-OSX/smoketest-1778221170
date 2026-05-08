@@ -1,188 +1,144 @@
-"use client"
+"use client";
 
-import { motion } from "framer-motion"
+import { motion, useReducedMotion } from "framer-motion";
 
-const checklistItems = [
+const trustItems = [
   "Background checks on every walker",
   "Verified ID and insurance coverage",
   "Trial walks and ongoing performance reviews",
   "Clear messaging and real-time check-ins",
-]
+];
 
-const itemVariants = {
-  hidden: {
-    opacity: 0,
-    x: 16,
-  },
-  visible: {
-    opacity: 1,
-    x: 0,
-  },
+function CheckIcon() {
+  return (
+    <svg aria-hidden="true" viewBox="0 0 24 24" fill="none" className="trust-safety-icon">
+      <path d="M5 12.5L10 17L19 8" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+    </svg>
+  );
 }
 
 export default function TrustSafetySection() {
+  const prefersReducedMotion = useReducedMotion();
+
   return (
     <motion.section
       className="trust-safety-section"
-      initial={{ opacity: 0, y: 40 }}
+      aria-labelledby="trust-safety-title"
+      initial={prefersReducedMotion ? { opacity: 1, y: 0 } : { opacity: 0, y: 40 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, margin: "-100px" }}
-      transition={{ duration: 0.6, ease: "easeOut" }}
-      aria-labelledby="trust-safety-title"
+      transition={prefersReducedMotion ? { duration: 0 } : { duration: 0.6, ease: "easeOut" }}
     >
-      <div className="trust-safety-shell">
+      <div className="trust-safety-shell section-shell">
         <div className="trust-safety-panel">
           <div className="trust-safety-intro">
-            <p className="trust-safety-eyebrow">Trust &amp; Safety</p>
+            <p className="trust-safety-eyebrow section-eyebrow">Trust &amp; Safety</p>
             <h2 className="trust-safety-title" id="trust-safety-title">
               How we keep your dog safe
             </h2>
-            <p className="trust-safety-lead">
+            <p className="trust-safety-lead section-body">
               Designed for reliability, screening, and clear communication.
             </p>
           </div>
 
-          <div>
-            <motion.ul
-              className="trust-safety-list"
-              initial="hidden"
-              whileInView="visible"
-              viewport={{ once: true, margin: "-80px" }}
-              transition={{ staggerChildren: 0.08 }}
-            >
-              {checklistItems.map((item) => (
-                <motion.li
-                  className="trust-safety-item"
-                  key={item}
-                  variants={itemVariants}
-                  transition={{ duration: 0.5, ease: "easeOut" }}
-                >
-                  <span aria-hidden="true">✓</span>
-                  <span>{item}</span>
-                </motion.li>
-              ))}
-            </motion.ul>
-            <p className="trust-safety-note">Care standards are built into every booking.</p>
-          </div>
+          <motion.ul
+            className="trust-safety-list"
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, margin: "-80px" }}
+            variants={{
+              hidden: {},
+              visible: {
+                transition: prefersReducedMotion ? undefined : { staggerChildren: 0.08 },
+              },
+            }}
+          >
+            {trustItems.map((item) => (
+              <motion.li
+                className="trust-safety-item"
+                key={item}
+                variants={{
+                  hidden: prefersReducedMotion ? { opacity: 1, x: 0 } : { opacity: 0, x: 16 },
+                  visible: { opacity: 1, x: 0 },
+                }}
+                transition={prefersReducedMotion ? { duration: 0 } : { duration: 0.5, ease: "easeOut" }}
+              >
+                <CheckIcon />
+                <span>{item}</span>
+              </motion.li>
+            ))}
+          </motion.ul>
         </div>
       </div>
 
       <style jsx>{`
         .trust-safety-section {
+          padding: 96px 0;
           background: var(--color-bg);
-          color: var(--color-text);
-          padding: 96px 24px;
-        }
-
-        .trust-safety-shell {
-          margin: 0 auto;
-          max-width: 1120px;
+          color: var(--color-surface);
         }
 
         .trust-safety-panel {
-          align-items: start;
-          background: var(--color-primary);
-          border-radius: 32px;
-          color: var(--color-bg);
           display: grid;
-          gap: 64px;
-          grid-template-columns: minmax(0, 46%) minmax(0, 54%);
-          padding: 64px;
-        }
-
-        .trust-safety-intro {
-          display: grid;
-          gap: 24px;
+          gap: 32px;
+          padding: 32px;
+          border-radius: var(--radius-xl);
+          background: var(--color-surface);
+          color: var(--color-text);
+          box-shadow: var(--shadow-card);
         }
 
         .trust-safety-eyebrow {
-          color: var(--color-accent);
-          font-family: var(--font-body);
-          font-size: 12px;
-          font-weight: 600;
-          letter-spacing: 0.08em;
-          line-height: 18px;
-          margin: 0;
-          text-transform: uppercase;
+          color: var(--color-primary);
         }
 
         .trust-safety-title {
-          color: var(--color-bg);
           font-family: var(--font-display);
-          font-size: 34px;
+          font-size: var(--type-h2-mobile-size);
+          line-height: var(--type-h2-mobile-line);
           font-weight: 600;
-          letter-spacing: -0.02em;
-          line-height: 42px;
-          margin: 0;
-          max-width: 520px;
+          letter-spacing: var(--tracking-display);
         }
 
         .trust-safety-lead {
-          color: var(--color-bg);
-          font-family: var(--font-body);
-          font-size: 18px;
-          font-weight: 400;
-          line-height: 28px;
-          margin: 0;
-          max-width: 440px;
+          margin-top: 16px;
+          color: var(--color-text-02);
         }
 
         .trust-safety-list {
           display: grid;
           gap: 16px;
           list-style: none;
-          margin: 0;
-          padding: 0;
         }
 
         .trust-safety-item {
-          align-items: baseline;
-          color: var(--color-bg);
           display: grid;
-          font-family: var(--font-body);
-          font-size: 18px;
-          font-weight: 600;
-          gap: 16px;
           grid-template-columns: 24px 1fr;
-          line-height: 28px;
-          margin: 0;
+          gap: 16px;
+          align-items: start;
+          font-size: var(--type-body-size);
+          line-height: var(--type-body-line);
         }
 
-        .trust-safety-item span:first-child {
-          color: var(--color-accent);
-          font-size: 18px;
-          font-weight: 600;
-          line-height: 28px;
+        .trust-safety-icon {
+          width: 24px;
+          height: 24px;
+          color: var(--color-accent-01);
         }
 
-        .trust-safety-note {
-          color: var(--color-bg);
-          font-family: var(--font-body);
-          font-size: 14px;
-          font-weight: 400;
-          line-height: 20px;
-          margin: 32px 0 0;
-          opacity: 0.72;
-        }
-
-        @media (max-width: 767px) {
-          .trust-safety-section {
-            padding: 96px 16px;
-          }
-
+        @media (min-width: 1024px) {
           .trust-safety-panel {
-            border-radius: 24px;
+            grid-template-columns: minmax(0, 5fr) minmax(0, 7fr);
             gap: 48px;
-            grid-template-columns: 1fr;
-            padding: 48px 24px;
+            padding: 48px;
           }
 
           .trust-safety-title {
-            font-size: 28px;
-            line-height: 36px;
+            font-size: var(--type-h2-desktop-size);
+            line-height: var(--type-h2-desktop-line);
           }
         }
       `}</style>
     </motion.section>
-  )
+  );
 }
