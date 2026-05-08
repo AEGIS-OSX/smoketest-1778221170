@@ -1,42 +1,47 @@
 "use client";
 
 import Link from "next/link";
-import { motion, useReducedMotion } from "framer-motion";
+import { motion } from "framer-motion";
 
 export default function FooterSection() {
-  const prefersReducedMotion = useReducedMotion();
-  const initial = prefersReducedMotion ? { opacity: 1, y: 0 } : { opacity: 0, y: 24 };
-  const transition = prefersReducedMotion ? { duration: 0 } : { duration: 0.5, ease: "easeOut" };
-
   return (
     <motion.footer
       className="footer-section"
-      initial={initial}
+      initial={{ opacity: 0, y: 24 }}
       whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true, margin: "-100px" }}
-      transition={transition}
+      viewport={{ once: true, margin: "-80px" }}
+      transition={{ duration: 0.6, ease: "easeOut" }}
     >
-      <div className="section-shell footer-shell">
+      <div className="footer-shell section-shell">
         <div className="footer-brand-block">
-          <Link className="footer-brand" href="#top" aria-label="PawWalk home">
-            PawWalk
-          </Link>
+          <p className="footer-brand">PawWalk</p>
           <p className="footer-tagline">Flexible, vetted dog walks that fit your day.</p>
         </div>
 
-        <div className="footer-links" aria-label="Footer links">
-          <Link className="footer-cta-link" href="#signup">
+        <div className="footer-links" aria-label="Footer navigation">
+          <motion.a
+            className="footer-cta-link"
+            href="#signup"
+            whileHover={{ y: -1 }}
+            transition={{ duration: 0.16, ease: "easeOut" }}
+          >
             Get early access
-          </Link>
-          <Link className="footer-legal-link" href="/privacy">
-            Read privacy policy
-          </Link>
-          <Link className="footer-legal-link" href="/privacy">
-            Privacy policy
-          </Link>
-          <Link className="footer-legal-link" href="/terms">
-            Terms of service
-          </Link>
+          </motion.a>
+          <motion.span whileHover={{ y: -1 }} transition={{ duration: 0.16, ease: "easeOut" }}>
+            <Link className="footer-legal-link" href="/privacy">
+              Read privacy policy
+            </Link>
+          </motion.span>
+          <motion.span whileHover={{ y: -1 }} transition={{ duration: 0.16, ease: "easeOut" }}>
+            <Link className="footer-legal-link" href="/privacy">
+              Privacy policy
+            </Link>
+          </motion.span>
+          <motion.span whileHover={{ y: -1 }} transition={{ duration: 0.16, ease: "easeOut" }}>
+            <Link className="footer-legal-link" href="/terms">
+              Terms of service
+            </Link>
+          </motion.span>
         </div>
 
         <p className="footer-meta">© 2026 PawWalk</p>
@@ -60,20 +65,20 @@ export default function FooterSection() {
         }
 
         .footer-brand {
-          width: max-content;
           font-family: var(--font-display);
-          font-size: 24px;
-          line-height: 30px;
+          font-size: var(--type-h3-size);
+          line-height: var(--type-h3-line);
           font-weight: 600;
-          letter-spacing: -0.02em;
+          letter-spacing: var(--tracking-display);
         }
 
         .footer-tagline,
-        .footer-links,
-        .footer-meta {
+        .footer-meta,
+        .footer-cta-link,
+        .footer-legal-link {
           font-family: var(--font-body);
-          font-size: 14px;
-          line-height: 20px;
+          font-size: var(--type-small-size);
+          line-height: var(--type-small-line);
         }
 
         .footer-tagline,
@@ -84,54 +89,31 @@ export default function FooterSection() {
         .footer-links {
           display: flex;
           flex-wrap: wrap;
-          gap: 16px;
+          gap: 16px 24px;
           align-items: center;
         }
 
         .footer-cta-link,
         .footer-legal-link {
-          transition: color 160ms ease-out, transform 160ms ease-out;
-        }
-
-        .footer-cta-link {
-          color: var(--color-accent-03);
+          display: inline-flex;
+          color: var(--color-accent-02);
           font-weight: 600;
-        }
-
-        .footer-legal-link {
-          color: rgba(246, 243, 238, 0.82);
+          transition: color 160ms ease-out;
         }
 
         .footer-cta-link:hover,
         .footer-legal-link:hover {
-          color: var(--color-accent-03);
-          transform: translateY(-1px);
+          color: var(--color-surface);
         }
 
         @media (min-width: 768px) {
           .footer-shell {
-            grid-template-columns: minmax(0, 1fr) minmax(0, auto);
+            grid-template-columns: minmax(0, 1fr) auto;
             align-items: start;
-          }
-
-          .footer-links {
-            justify-content: flex-end;
           }
 
           .footer-meta {
             grid-column: 1 / -1;
-          }
-        }
-
-        @media (prefers-reduced-motion: reduce) {
-          .footer-cta-link,
-          .footer-legal-link {
-            transition-duration: 0.01ms;
-          }
-
-          .footer-cta-link:hover,
-          .footer-legal-link:hover {
-            transform: none;
           }
         }
       `}</style>
